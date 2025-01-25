@@ -10,15 +10,15 @@
         <div @class(['row justify-content-center' => $serviceSidebarContent])>
             <div @class(['col-71 order-0 order-lg-2' => $serviceSidebarContent])>
                 <div class="services-details-wrap">
-                    @if ($image = $service->image)
+                    {{-- @if ($image = $service->image)
                         <div class="services-details-thumb">
                             {{ RvMedia::image($image, $service->name) }}
                         </div>
-                    @endif
+                    @endif --}}
                     <div class="services-details-content">
-                        @if ($description = $service->description)
+                        {{-- @if ($description = $service->description)
                             <h2 class="title">{{ $service->description }}</h2>
-                        @endif
+                        @endif --}}
 
                         <div class="ck-content">
                             {!! BaseHelper::clean($service->content) !!}
@@ -28,17 +28,17 @@
                     </div>
                 </div>
             </div>
-            @if($serviceSidebarContent)
+            {{-- @if($serviceSidebarContent)
                 <div class="col-29">
                     <aside class="services-sidebar">
                         {!! $serviceSidebarContent !!}
                     </aside>
                 </div>
-            @endif
+            @endif --}}
         </div>
     </div>
 </section>
 
-<section class="mt-5">
+{{-- <section class="mt-5">
     {!! dynamic_sidebar('service_detail_bottom_sidebar') !!}
-</section>
+</section> --}}

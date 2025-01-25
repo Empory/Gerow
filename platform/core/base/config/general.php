@@ -31,7 +31,7 @@ return [
     'enable_https_support' => env('ENABLE_HTTPS_SUPPORT', false),
     'force_root_url' => env('FORCE_ROOT_URL'),
     'force_schema' => env('FORCE_SCHEMA'),
-    'max_execution_time' => env('CMS_MAX_EXECUTION_TIME', 300),
+    'max_execution_time' => env('CMS_MAX_EXECUTION_TIME', 600),
     'memory_limit' => env('CMS_MEMORY_LIMIT'),
     'date_format' => [
         'date' => env('CMS_DATE_FORMAT', 'Y-m-d'),

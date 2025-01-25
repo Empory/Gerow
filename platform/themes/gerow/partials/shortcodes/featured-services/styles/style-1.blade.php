@@ -1,3 +1,61 @@
+<style>
+    .sectors-container {
+        display: flex;
+        flex-wrap: wrap;
+        /* gap: 20px; */
+    }
+
+    .sector-item {
+        flex: 1;
+        height: 300px;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        transition: flex-grow 0.3s ease-in-out, transform 0.3s ease-in-out;
+        cursor: pointer;
+    }
+
+    .sector-item:hover {
+        flex-grow: 2; /* Sadece genişleme etkisi */
+        transform: scale(1); /* Büyütmeyi devre dışı bırakma */
+    }
+
+    /* Diğer öğeleri küçültme özelliğini kaldırdık */
+    .sector-item:not(:hover) {
+        flex-grow: 1;
+    }
+
+    .sector-overlay {
+        position: absolute;
+        bottom: 0;
+        /* background: rgba(0, 0, 0, 0.6); */
+        color: white;
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .sector-item:hover .sector-overlay {
+        opacity: 1;
+    }
+
+    .sector-overlay h2 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .sector-overlay p {
+        margin: 10px 0 0;
+        font-size: 14px;
+    }
+</style>
+
+
 <section
     class="services-area-two services-bg-two"
     @if ($bgImage = $shortcode->background_image) data-background="{{ RvMedia::getImageUrl($bgImage) }}" @endif
@@ -26,31 +84,14 @@
                 @endif
             </div>
         </div>
-        <div class="row justify-content-center">
+        <div class="sectors-container">
             @foreach ($services as $service)
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
-                    <div class="services-item-two">
-                        <div class="services-thumb-two">
-                            {{ RvMedia::image($service->image, $service->name) }}
-                            <div class="item-shape">
-                                {{ RvMedia::image(Theme::asset()->url('/imgs/services-item-shape.png'), __('Shape image'), attributes: ['loading' => false]) }}
-                            </div>
-                        </div>
-                        <div class="services-content-two">
-                            @if ($iconImage = $service->getMetaData('icon_image', true))
-                                <div class="icon">
-                                    {{ RvMedia::image($iconImage, $service->name, attributes: ['width' => 32, 'height' => 32, 'loading' => false]) }}
-                                </div>
-                            @elseif ($icon = $service->getMetaData('icon', true))
-                                <div class="icon">
-                                    <i class="{{ $icon }}"></i>
-                                </div>
-                            @endif
-                            <h2 class="title"><a href="{{ $service->url }}">{{ $service->name }}</a></h2>
-                            @if ($description = $service->description)
-                                <p>{!! BaseHelper::clean(Str::limit($description)) !!}</p>
-                            @endif
-                        </div>
+                <div class="sector-item" style="background-image: url('{{ RvMedia::getImageUrl($service->image) }}');">
+                    <div class="sector-overlay">
+                        <h2 style="color: black">{{ $service->name }}</h2>
+                        {{-- @if ($description = $service->description)
+                            <p>{!! BaseHelper::clean(Str::limit($description, 100)) !!}</p>
+                        @endif --}}
                     </div>
                 </div>
             @endforeach

@@ -5,10 +5,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} (.+)/$
 RewriteRule ^ %1 [L,R=301]
 <IfModule mod_php7.c>
-php_value max_execution_time 300
+php_value max_execution_time 180000
+
 </IfModule>
 
 RewriteCond %{REQUEST_URI} !^public
 
 RewriteRule ^(.*)$ public/$1 [L]
-php_value max_execution_time 259200

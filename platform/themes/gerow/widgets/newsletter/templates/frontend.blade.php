@@ -1,7 +1,8 @@
+
 <div class="col-lg-4 col-md-7">
     <div class="footer-widget">
         @if ($name = Arr::get($config, 'name'))
-            <h3 class="fw-title">{!! BaseHelper::clean($name) !!}</h3>
+            <h3 class="fw-title" style="display: none">{!! BaseHelper::clean($name) !!}</h3>
         @endif
         <div class="footer-newsletter">
             @if ($description = Arr::get($config, 'description'))
